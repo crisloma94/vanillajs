@@ -19,6 +19,18 @@
 			display: block;
 			list-style: none;
 			display: grid;
+			@media all and (-ms-high-contrast: none) {
+				display: inline-block;
+				width: 33%;
+			}
 		}
+	}
+}
+
+@media all and (-ms-high-contrast: none) {
+	.grid-container {
+		display: -ms-grid;
+		-ms-grid-columns: 1fr 1fr 1fr 1fr;
+		-ms-grid-rows: 1fr 1fr 1fr;
 	}
 }
