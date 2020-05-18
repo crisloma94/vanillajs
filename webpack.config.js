@@ -1,11 +1,12 @@
 /** @format */
 
+const path = require('path');
+
 // webpack.config.js
 module.exports = {
 	entry: [ '@babel/polyfill', './src/index.js' ],
 	output: {
-		path: __dirname,
-		publicPath: '/',
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
 	module: {
@@ -23,11 +24,10 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpe?g|gif)$/i,
-				use: [
-					{
-						loader: 'file-loader',
-					},
-				],
+				loader: 'file-loader',
+				options: {
+					outputPath: 'images',
+				},
 			},
 		],
 	},
