@@ -1,0 +1,35 @@
+@import './../vars';
+
+.card {
+	background-color: $light-color;
+	font-size: 14px;
+	padding: 170px 20px 20px;
+	margin: 140px 20px 40px;
+	position: relative;
+	line-height: 20px;
+	img {
+		width: 189px;
+		height: 286px;
+		object-fit: cover;
+		position: absolute;
+		top: -140px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.title {
+		font-size: 18px;
+		font-weight: $bold-weight;
+		width: 100%;
+		text-align: center;
+		padding-bottom: 15px;
+	}
+	.info {
+		.info-title {
+			font-weight: $medium-weight;
+		}
+	}
+	.description {
+		font-weight: $light-weight;
+		padding-top: 10px;
+	}
+}

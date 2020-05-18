@@ -1,0 +1,9 @@
+@import './../vars';
+
+select {
+	border: none;
+	color: $base-color;
+	&:focus {
+		outline: none;
+	}
+}

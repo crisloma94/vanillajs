@@ -1,0 +1,24 @@
+@import './../vars';
+
+input[type=text] {
+	border: none;
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}
+
+.btn {
+	border: none;
+	border-radius: 20px;
+	padding: 5px 30px;
+	font-weight: $medium-weight;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+	&.btn-submit {
+		background-color: $accent-color;
+		color: $light-color;
+	}
+}

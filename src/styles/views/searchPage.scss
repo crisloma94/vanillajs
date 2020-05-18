@@ -1,0 +1,24 @@
+@import './../vars';
+
+.container {
+	padding: 30px;
+	color: $base-color;
+	margin: 20px auto;
+	max-width: 1200px;
+}
+
+#results {
+	ul {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			display: block;
+			list-style: none;
+			display: grid;
+		}
+	}
+}
