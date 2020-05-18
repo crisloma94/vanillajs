@@ -4,7 +4,7 @@ const path = require('path');
 
 // webpack.config.js
 module.exports = {
-	entry: [ '@babel/polyfill', './src/index.js' ],
+	entry: [ '@babel/polyfill', 'isomorphic-fetch', './src/index.js' ],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
