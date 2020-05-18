@@ -13,7 +13,7 @@ export default class ActionBar {
 
 	render() {
 		return `
-			<div id="action-bar">
+			<div id="action-bar" class="box">
 				<img class="search-icon" src="${searchIcon.default}" alt="search-icon">
 				${this.inputSearch.render()}
 				<div class="action-item">

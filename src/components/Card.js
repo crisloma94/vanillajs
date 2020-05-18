@@ -11,7 +11,7 @@ export default class Card {
 
 	render() {
 		return `
-			<div class="card">
+			<div class="card box">
 				<img src="${this.src}" alt="${this.title}">
 				<div class="title">${this.title}</div>
 				<div class="info">
