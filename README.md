@@ -10,30 +10,30 @@ Install dependencies from project root with `npm install`
 
 # Architecture
 
-formacionjs     
-├── dist   
-│   ├── images 
-│   ├── bundle.js 
-│   ├── index.html   
+formacionjs  
+├── dist     
+│   ├── images    
+│   ├── bundle.js    
+│   ├── index.html    
 ├── src    
-│   ├── index.js  
+│   ├── index.js    
 │   ├── config   
 │   ├── utils   
-│   ├── components   
+│   ├── components     
 │   ├── assets   
 │   │   ├── fonts   
 │   │   ├── images   
 │   ├── styles   
-│   ├── views
+│   ├── views    
 ├── README.md   
 ├── node_modules   
 ├── package.json   
-├── .gitignore 
-├── .babelrc
-├── postcss.config.js   
-├── webpack.config.js   
-├── index.html   
-├── server.js   
+├── .gitignore    
+├── .babelrc    
+├── postcss.config.js    
+├── webpack.config.js     
+├── index.html    
+├── server.js    
 
 
 ## src
