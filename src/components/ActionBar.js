@@ -5,12 +5,18 @@ import './../styles/components/ActionBar.scss';
 
 import * as searchIcon from './../assets/images/search-icon.png';
 export default class ActionBar {
+	/**
+	 * The class constructor
+	 */
 	constructor() {
 		this.inputSearch = new Input('text', 'searchInput', 'action-item', 'search', '', 'Type something...');
 		this.orderBy = new Select('orderBy', 'select-order-by', 'orderBy', [ { value: 'Year', label: 'Year' }, { value: 'imdbRating', label: 'Rating' } ]);
 		this.submitButton = new Input('submit', 'searchSubmit', 'action-item btn btn-submit', 'submit', 'Search', '');
 	}
 
+	/**
+	 * Returns the HTML of the component
+	 */
 	render() {
 		return `
 			<form id="action-bar" class="box">

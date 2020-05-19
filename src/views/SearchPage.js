@@ -10,13 +10,23 @@ import './../styles/views/searchPage.scss';
 import * as constants from './../config/constants';
 
 import * as poster from './../assets/images/default-poster.png';
+
+/**
+ * Page with a movie and series searcher
+ */
 export default class SearchPage {
+	/**
+	 * The class constructor
+	 */
 	constructor() {
 		this.actionBar = new ActionBar();
 		this.card = new Card();
 		this.spinner = new Spinner();
 	}
 
+	/**
+	 * Initializes the component, calls the render method
+	 */
 	init() {
 		DOM.render(this.render(), document.querySelector('#main'));
 		const actionBar = document.getElementById('action-bar');
@@ -25,6 +35,9 @@ export default class SearchPage {
 		});
 	}
 
+	/**
+	 * Returns the HTML of the component
+	 */
 	render() {
 		return `
 			<div class="container">
