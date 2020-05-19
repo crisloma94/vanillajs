@@ -3,6 +3,11 @@ export const Helpers = (() => {
 
 	let methods = {};
 
+	/**
+	 * Orders a keyed array based on a given key
+	 * @param  {String} key The key for the order to be based on
+	 * @param  {String} order 'asc' to order from highest to lowes, 'desc' to order from lowest to highest
+	 */
 	methods.compareValues = (key, order = 'asc') => {
 		return function innerSort(a, b) {
 			if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) return 0;

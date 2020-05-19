@@ -19,8 +19,8 @@ export default class SearchPage {
 
 	init() {
 		DOM.render(this.render(), document.querySelector('#main'));
-		const submitButton = document.getElementById('searchSubmit');
-		submitButton.addEventListener('click', () => {
+		const actionBar = document.getElementById('action-bar');
+		actionBar.addEventListener('submit', () => {
 			this.handleSearch(this);
 		});
 	}
@@ -34,11 +34,20 @@ export default class SearchPage {
         `;
 	}
 
+	/**
+	 * Calls the omdbAPI and prints the result
+	 * @param  {object} self The context of the SearchPage class
+	 */
 	handleSearch(self) {
+		event.preventDefault();
 		self.clearSearch();
 		self.loadSpinner();
 		const textToSearch = document.getElementById('searchInput').value;
 
+		/**
+		 * Calls the omdbAPI in search mode and gets the result
+		 * @param  {String} text The text the user inserted as input
+		 */
 		async function getFilms(text) {
 			try {
 				let response = await fetch(constants.SEARCH_URL_API + text);
@@ -47,10 +56,14 @@ export default class SearchPage {
 				return films;
 			} catch (err) {
 				self.clearSearch();
-				self.noResults(textToSearch);
+				self.appendNoResultsMessage(textToSearch);
 			}
 		}
 
+		/**
+		 * Calls the omdbAPI by ID and gets the plot and the imdbRating of the film with that ID
+		 * @param  {String} imdbID The ID of the film
+		 */
 		async function getFilmData(imdbID) {
 			try {
 				let response = await fetch(constants.SEARCH_ID_URL_API + imdbID);
@@ -61,10 +74,11 @@ export default class SearchPage {
 				};
 			} catch (err) {
 				self.clearSearch();
-				self.noResults(textToSearch);
+				self.appendNoResultsMessage(textToSearch);
 			}
 		}
 
+		// Call getFilms to get all the films and call getFilmData for each film
 		if (textToSearch) {
 			getFilms(textToSearch)
 				.then((films) => {
@@ -76,7 +90,7 @@ export default class SearchPage {
 						});
 					} catch (err) {
 						self.clearSearch();
-						self.noResults(textToSearch);
+						self.appendNoResultsMessage(textToSearch);
 					}
 				})
 				.then((finalFilms) => {
@@ -84,8 +98,9 @@ export default class SearchPage {
 						setTimeout(() => {
 							self.clearSearch();
 							Promise.all(finalFilms).then((finalFilms) => {
-								finalFilms = self.orderBy(finalFilms).slice(0, constants.MAX_RESULTS);
+								finalFilms = self.order(finalFilms).slice(0, constants.MAX_RESULTS);
 								finalFilms.map((film) => {
+									//Create an instance of the card component for each film and append the result
 									let filmCard = new Card(film.Title, film.Poster != 'N/A' ? film.Poster : poster.default, film.Year, film.imdbRating, film.Plot);
 									self.appendResultItem(filmCard.render());
 								});
@@ -95,44 +110,65 @@ export default class SearchPage {
 				});
 		} else {
 			self.clearSearch();
-			self.noInput();
+			self.appendNoInputMessage();
 		}
 	}
 
+	/**
+	 * Prints a loading spinner in the results div
+	 */
 	loadSpinner() {
 		this.clearSearch();
 		DOM.render(this.spinner.render(), document.getElementById('results'));
 	}
 
-	orderBy(array) {
+	/**
+	 * Sorts out an array depending on the user input
+	 * @param  {Array} array A keyed array
+	 */
+	order(array) {
 		const key = document.getElementById('orderBy').value;
 		return array.sort(Helpers.compareValues(key, 'desc'));
 	}
 
+	/**
+	 * Clears out the results div
+	 */
 	clearSearch() {
 		document.getElementById('results').innerHTML = '';
 	}
 
+	/**
+	 * Creates an unordered list in the results div and appends a list item to it
+	 * @param  {String} item The content of the list item to append
+	 */
 	appendResultItem(item) {
 		if (!document.getElementById('search-results')) {
-			let unorderedList = document.createElement('UL');
+			let unorderedList = document.createElement('ul');
 			unorderedList.id = 'search-results';
 			document.getElementById('results').appendChild(unorderedList);
 		}
-		let listItem = document.createElement('LI');
+		let listItem = document.createElement('li');
 		listItem.innerHTML = item;
 		document.getElementById('search-results').appendChild(listItem);
 	}
 
-	noResults(text) {
-		let noResultsDiv = document.createElement('DIV');
+	/**
+	 * Appends a "no results" message in the results div
+	 * @param  {String} text The text the user set as input to search for
+	 */
+	appendNoResultsMessage(text) {
+		let noResultsDiv = document.createElement('div');
 		noResultsDiv.id = 'no-results';
 		noResultsDiv.innerHTML = 'We did not find anything with "' + text + '"';
 		document.getElementById('results').appendChild(noResultsDiv);
 	}
 
-	noInput() {
-		let noInputDiv = document.createElement('DIV');
+	/**
+	 * Appends a "no input" message in the results div
+	 */
+	appendNoInputMessage() {
+		let noInputDiv = document.createElement('div');
 		noInputDiv.id = 'no-input';
 		noInputDiv.innerHTML = 'Please, introduce something to search';
 		document.getElementById('results').appendChild(noInputDiv);

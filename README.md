@@ -10,47 +10,56 @@ Install dependencies from project root with `npm install`
 
 # Architecture
 
-formacionjs   
-├── README.md   
-├── node_modules   
-├── package.json   
-├── .gitignore   
-├── public   
-│   ├── favicon.ico   
-├── src   
-│   ├── index.css   
+formacionjs     
+├── dist   
+│   ├── images 
+│   ├── bundle.js 
+│   ├── index.html   
+├── src    
 │   ├── index.js  
 │   ├── config   
 │   ├── utils   
 │   ├── components   
-│   ├── sources   
+│   ├── assets   
 │   │   ├── fonts   
 │   │   ├── images   
 │   ├── styles   
-│   ├── views  
+│   ├── views
+├── README.md   
+├── node_modules   
+├── package.json   
+├── .gitignore 
+├── .babelrc
+├── postcss.config.js   
 ├── webpack.config.js   
 ├── index.html   
 ├── server.js   
 
 
-## config
-Static definitions and configurations (e.g. constants)
+## src
+Where all the code of the app is located
 
-## utils
+### index.js
+Entry point
+
+### config
+Static definitions and configurations
+
+### utils
 Utility functions
 
-## components
+### components
 Reusable components without business logic
 
-## assets
+### assets
 Static assets
-### fonts
+#### fonts
 Fonts
-### images
+#### images
 Images
 
-## styles
+### styles
 Sass stylesheets
 
-## views
+### views
 Pages of the project
